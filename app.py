@@ -44,16 +44,12 @@ if not df_filtered.empty:
 else:
     st.info("해당 조건에 맞는 데이터가 없습니다.")
 
-# 사고다발 TOP 5
 
 # 한글 폰트 설정
 plt.rcParams['font.family'] = 'Malgun Gothic'  # Windows 기본 한글 폰트
 plt.rcParams['axes.unicode_minus'] = Fal
 import matplotlib.pyplot as plt
 
-# 폰트 설정
-plt.rcParams['font.family'] = 'Malgun Gothic'
-plt.rcParams['axes.unicode_minus'] = False
 
 # 그래프 그리기
 top5 = df.groupby("사고지역위치명")["발생건수"].sum().sort_values(ascending=False).head(5)
