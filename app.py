@@ -4,9 +4,6 @@ import folium
 from streamlit_folium import st_folium
 import matplotlib.pyplot as plt
 
-# 한글 폰트 설정
-plt.rcParams['font.family'] = 'Malgun Gothic'  # 윈도우
-plt.rcParams['axes.unicode_minus'] = False
 
 # CSV 파일 로드 (인코딩 지정)
 df = pd.read_csv("북부 사고 다발 지역 데이터.csv", encoding='cp949')
@@ -48,15 +45,24 @@ else:
     st.info("해당 조건에 맞는 데이터가 없습니다.")
 
 # 사고다발 TOP 5
-st.subheader("🔥 사고 다발 지역 TOP 5")
-top5 = df_filtered.groupby("사고지역위치명")["발생건수"].sum().sort_values(ascending=False).head(5)
-if not top5.empty:
-    fig, ax = plt.subplots()
-    top5.plot(kind='barh', ax=ax, color='crimson')
-    ax.set_xlabel("발생건수")
-    ax.set_ylabel("사고지역위치명")
-    ax.invert_yaxis()
-    st.pyplot(fig)
-else:
-    st.info("해당 조건에 맞는 TOP 5 데이터를 찾을 수 없습니다.")
+
+# 한글 폰트 설정
+plt.rcParams['font.family'] = 'Malgun Gothic'  # Windows 기본 한글 폰트
+plt.rcParams['axes.unicode_minus'] = Fal
+import matplotlib.pyplot as plt
+
+# 폰트 설정
+plt.rcParams['font.family'] = 'Malgun Gothic'
+plt.rcParams['axes.unicode_minus'] = False
+
+# 그래프 그리기
+top5 = df.groupby("사고지역위치명")["발생건수"].sum().sort_values(ascending=False).head(5)
+top5.plot(kind='barh', color='crimson')
+plt.xlabel("발생건수")
+plt.ylabel("사고지역위치명")
+plt.title("사고 다발 지역 TOP 5")
+plt.gca().invert_yaxis()
+plt.tight_layout()
+plt.show()
+
 
