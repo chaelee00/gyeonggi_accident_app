@@ -4,6 +4,10 @@ import folium
 from streamlit_folium import st_folium
 import matplotlib.pyplot as plt
 
+# 한글 폰트 설정
+plt.rcParams['font.family'] = 'Malgun Gothic'  # 윈도우
+plt.rcParams['axes.unicode_minus'] = False
+
 # CSV 파일 로드 (인코딩 지정)
 df = pd.read_csv("북부 사고 다발 지역 데이터.csv", encoding='cp949')
 
