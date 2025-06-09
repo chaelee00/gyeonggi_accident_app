@@ -47,7 +47,7 @@ else:
 
 # 한글 폰트 설정
 plt.rcParams['font.family'] = 'Malgun Gothic'  # Windows 기본 한글 폰트
-plt.rcParams['axes.unicode_minus'] = Fal
+plt.rcParams['axes.unicode_minus'] = False
 import matplotlib.pyplot as plt
 
 
