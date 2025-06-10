@@ -61,7 +61,11 @@ else:
 
 
 # 그래프 그리기
-import matplotlib.font_manager as fm
+import matplotlib.pyplot as plt
+
+# 전역 폰트 설정 (NanumGothic은 리눅스에서도 호환됨)
+plt.rcParams['font.family'] = 'NanumGothic'
+plt.rcParams['axes.unicode_minus'] = False
 
 st.subheader("🔥 사고 다발 지역 TOP 5")
 top5 = df_filtered.groupby("사고지역위치명")["발생건수"].sum().sort_values(ascending=False).head(5)
@@ -74,10 +78,11 @@ if not top5.empty:
     ax.set_title("사고 다발 지역 TOP 5")
     ax.tick_params(labelsize=10)
 
-   for label in ax.get_yticklabels():
-    label.set_fontsize(10)
+    for label in ax.get_yticklabels():
+        label.set_fontsize(10)
 
     ax.invert_yaxis()
     st.pyplot(fig)
 else:
     st.info("TOP 5 사고 지역 데이터를 표시할 수 없습니다.")
+
