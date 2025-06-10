@@ -74,9 +74,8 @@ if not top5.empty:
     ax.set_title("사고 다발 지역 TOP 5")
     ax.tick_params(labelsize=10)
 
-    # 눈금 라벨 폰트도 적용
-    for label in ax.get_yticklabels():
-        label.set_fontproperties(fontprop)
+   for label in ax.get_yticklabels():
+    label.set_fontsize(10)
 
     ax.invert_yaxis()
     st.pyplot(fig)
