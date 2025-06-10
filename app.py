@@ -5,7 +5,7 @@ from streamlit_folium import st_folium
 import matplotlib.pyplot as plt
 
 # 한글 폰트 설정 (Windows 기준)
-plt.rcParams['font.family'] = 'Malgun Gothic'
+plt.rcParams['font.family'] = 'NanumGothic'  # 서버에 설치되어 있는 글꼴 (또는 돋움 등)
 plt.rcParams['axes.unicode_minus'] = False
 
 # CSV 파일 로드 (인코딩 지정)
@@ -39,20 +39,29 @@ st.subheader("📍 사고 위치 지도")
 if not df_filtered.empty:
     m = folium.Map(location=[df_filtered['위도'].mean(), df_filtered['경도'].mean()], zoom_start=12)
     for _, row in df_filtered.iterrows():
+        # 마커 및 발생건수 텍스트 함께 추가
         folium.Marker(
             location=[row['위도'], row['경도']],
             popup=f"{row['사고지역위치명']}<br>발생건수: {row['발생건수']}"
         ).add_to(m)
+        
+        # 발생건수 숫자를 마커 위에 간단히 텍스트로 표시
+        folium.map.Marker(
+            [row['위도'], row['경도']],
+            icon=folium.DivIcon(html=f"""
+                <div style="font-size:10pt; color:crimson; font-weight:bold; text-align:center;">
+                    {row['발생건수']}
+                </div>
+            """)
+        ).add_to(m)
+
     st_folium(m, width=700, height=500)
 else:
     st.info("해당 조건에 맞는 데이터가 없습니다.")
 
+
 # 그래프 그리기
 import matplotlib.font_manager as fm
-
-# 한글 폰트 명시 (Windows용 'Malgun Gothic')
-font_path = "C:/Windows/Fonts/malgun.ttf"
-fontprop = fm.FontProperties(fname=font_path, size=12)
 
 st.subheader("🔥 사고 다발 지역 TOP 5")
 top5 = df_filtered.groupby("사고지역위치명")["발생건수"].sum().sort_values(ascending=False).head(5)
