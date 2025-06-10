@@ -1,10 +1,17 @@
-plt.rcParams['font.family'] = 'NanumGothic'
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+# 폰트 경로 지정
+font_path = "./fonts/NanumGothic.ttf"
+fontprop = fm.FontProperties(fname=font_path)
+
+plt.rcParams['font.family'] = fontprop.get_name()
 plt.rcParams['axes.unicode_minus'] = False
+
 import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
-import matplotlib.pyplot as plt
 
 # CSV 파일 로드 (인코딩 지정)
 df = pd.read_csv("북부 사고 다발 지역 데이터.csv", encoding='cp949')
