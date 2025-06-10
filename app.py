@@ -1,12 +1,10 @@
+plt.rcParams['font.family'] = 'NanumGothic'
+plt.rcParams['axes.unicode_minus'] = False
 import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
 import matplotlib.pyplot as plt
-
-# 한글 폰트 설정 (Windows 기준)
-plt.rcParams['font.family'] = 'NanumGothic'  # 서버에 설치되어 있는 글꼴 (또는 돋움 등)
-plt.rcParams['axes.unicode_minus'] = False
 
 # CSV 파일 로드 (인코딩 지정)
 df = pd.read_csv("북부 사고 다발 지역 데이터.csv", encoding='cp949')
