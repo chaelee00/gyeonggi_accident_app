@@ -74,9 +74,13 @@ top5 = df_filtered.groupby("사고지역위치명")["발생건수"].sum().sort_v
 if not top5.empty:
     fig, ax = plt.subplots()
     top5.plot(kind='barh', ax=ax, color='crimson')
-    ax.set_xlabel("발생건수")
-    ax.set_ylabel("사고지역위치명")
-    ax.set_title("사고 다발 지역 TOP 5")
+    ax.set_xlabel("발생건수", fontproperties=fontprop)
+    ax.set_ylabel("사고지역위치명", fontproperties=fontprop)
+    ax.set_title("사고 다발 지역 TOP 5", fontproperties=fontprop)
+
+    for label in ax.get_yticklabels():
+        label.set_fontproperties(fontprop)
+
     ax.tick_params(labelsize=10)
     ax.invert_yaxis()
     st.pyplot(fig)
