@@ -113,11 +113,11 @@ types = sorted(df['사고유형구분'].unique())
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    selected_year = st.selectbox("사고 년도", years)
+    selected_year = st.selectbox("사고 년도", years, key="year")
 with col2:
-    selected_region = st.selectbox("시군명", ["전체"] + regions)
+    selected_region = st.selectbox("시군명", ["전체"] + regions, key="region")
 with col3:
-    selected_type = st.selectbox("사고 유형", ["전체"] + types)
+    selected_type = st.selectbox("사고 유형", ["전체"] + types, key="type")
 
 # 필터 적용
 df_filtered = df[df['사고년도'] == selected_year]
