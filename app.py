@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
 # 폰트 경로 지정
-font_path = "./fonts/NanumGothic.ttf"
+font_path = "./font/NanumGothic.ttf"  # ← 복수형 ❌, 단수형 ✅
 fontprop = fm.FontProperties(fname=font_path)
 
 plt.rcParams['font.family'] = fontprop.get_name()
