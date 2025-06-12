@@ -6,7 +6,8 @@ font_path = "./font/NanumGothic.ttf"  # ← 복수형 ❌, 단수형 ✅
 fontprop = fm.FontProperties(fname=font_path)
 
 plt.rcParams['font.family'] = fontprop.get_name()
-plt.rcParams['axes.unicode_minus'] = Falseimport streamlit as st
+plt.rcParams['axes.unicode_minus'] = False
+import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
